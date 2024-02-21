@@ -23,7 +23,7 @@ Please refer to this documentation for more detail.
 
 # Setup
 
-Please create a `.env` file and save the `APPSYNC_ID` and `APPSYNC_KEY_ID`. You will be able to extract this information from AWS AppSync console or Cloudformation output.
+Please create a `.env` file and save the `APPSYNC_ENDPOINT_ID` and `APPSYNC_KEY_ID`. You will be able to extract this information from AWS AppSync console or Cloudformation output.
 
 This will use the default channel name as `robots`.
 
@@ -36,4 +36,17 @@ You can pass the channel name using the environment variable.
 
 ```
 CHANNEL=test node index.js
+```
+
+# Publish structure
+
+To ensure subscribers receive the data field, you must include it in the mutation's response selection set. It must be part of the mutation's response for AppSync to send it to subscribers. Here's how it should look:
+
+```graphql
+mutation PublishData {
+  publish(data: "{\"msg\": \"hello world!\"}", name: "robots") {
+    name
+    data # Ensure this is included in the response
+  }
+}
 ```

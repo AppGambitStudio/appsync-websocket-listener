@@ -4,7 +4,7 @@ import WebSocket from 'ws';
 
 let region = process.env.REGION;
 
-let appsyncID = process.env.APPSYNC_ID; 
+let appsyncID = process.env.APPSYNC_ENDPOINT_ID; 
 let apiKey = process.env.APPSYNC_KEY_ID;
 let url = `wss://${appsyncID}.appsync-realtime-api.${region}.amazonaws.com/graphql`
 
@@ -60,5 +60,6 @@ ws.onmessage = (e) => {
         console.log('Msg received', e.data);
     }    
 };
+
 ws.onclose   = (e) => {console.log('Socket closed',   e);};
 ws.onerror   = (e) => {console.log('Socket error',    e);};
