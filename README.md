@@ -25,7 +25,15 @@ Please refer to this documentation for more detail.
 
 Please create a `.env` file and save the `APPSYNC_ID` and `APPSYNC_KEY_ID`. You will be able to extract this information from AWS AppSync console or Cloudformation output.
 
+This will use the default channel name as `robots`.
+
 ```bash
 npm i
 node index.js
+```
+
+You can pass the channel name using the environment variable.
+
+```
+CHANNEL=test node index.js
 ```
